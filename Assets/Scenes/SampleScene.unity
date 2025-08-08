@@ -123,54 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &80751780 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3329749803133560440, guid: 6b652367dc79a9246a8bb8028b3b1735, type: 3}
-  m_PrefabInstance: {fileID: 3329749803061201628}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &80751785 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3329749803133560437, guid: 6b652367dc79a9246a8bb8028b3b1735, type: 3}
-  m_PrefabInstance: {fileID: 3329749803061201628}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80751780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14944a631701e454f945aa447cc6d6f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!60 &80751786
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80751780}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.33, y: 0.46}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.015, y: 0.22999999}
-      - {x: -0.16499999, y: 0.06}
-      - {x: -0.16499999, y: -0.19}
-      - {x: -0.095, y: -0.22999999}
-      - {x: 0.105, y: -0.22999999}
-      - {x: 0.16499999, y: -0.19}
-      - {x: 0.16499999, y: 0.22999999}
 --- !u!1 &457932279
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,6 +624,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &777587595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 777587596}
+  m_Layer: 0
+  m_Name: Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &777587596
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777587595}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1100208547}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &847851134
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,8 +843,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1100208547}
+  - component: {fileID: 1100208548}
   m_Layer: 0
-  m_Name: Game Manager
+  m_Name: Fruit Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -875,13 +859,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100208546}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2968493, y: 0.7715061, z: -0.028430313}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 777587596}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1100208548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100208546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c13bcd063888441a5672c5d7f2adb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 777587596}
+  fruitPrefab: {fileID: 3329749803133560440, guid: 6b652367dc79a9246a8bb8028b3b1735, type: 3}
+  currentFruit: {fileID: 0}
 --- !u!1 &1102627499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,9 +1173,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 80751785}
-          m_TargetAssemblyTypeName: Fruit, Assembly-CSharp
-          m_MethodName: Drag
+        - m_Target: {fileID: 1100208548}
+          m_TargetAssemblyTypeName: FruitManager, Assembly-CSharp
+          m_MethodName: TouchDown
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1189,9 +1189,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 80751785}
-          m_TargetAssemblyTypeName: Fruit, Assembly-CSharp
-          m_MethodName: Drop
+        - m_Target: {fileID: 1100208548}
+          m_TargetAssemblyTypeName: FruitManager, Assembly-CSharp
+          m_MethodName: TouchUp
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1323,60 +1323,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &3329749803061201628
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3329749803133560436, guid: 6b652367dc79a9246a8bb8028b3b1735, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3329749803133560436, guid: 6b652367dc79a9246a8bb8028b3b1735, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 3329749803133560436, guid: 6b652367dc79a9246a8bb8028b3b1735, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3329749803133560436, guid: 6b652367dc79a9246a8bb8028b3b1735, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3329749803133560436, guid: 6b652367dc79a9246a8bb8028b3b1735, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3329749803133560436, guid: 6b652367dc79a9246a8bb8028b3b1735, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3329749803133560436, guid: 6b652367dc79a9246a8bb8028b3b1735, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3329749803133560436, guid: 6b652367dc79a9246a8bb8028b3b1735, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3329749803133560436, guid: 6b652367dc79a9246a8bb8028b3b1735, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3329749803133560436, guid: 6b652367dc79a9246a8bb8028b3b1735, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3329749803133560436, guid: 6b652367dc79a9246a8bb8028b3b1735, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3329749803133560440, guid: 6b652367dc79a9246a8bb8028b3b1735, type: 3}
-      propertyPath: m_Name
-      value: Fruit
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6b652367dc79a9246a8bb8028b3b1735, type: 3}
