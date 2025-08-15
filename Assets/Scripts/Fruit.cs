@@ -45,6 +45,9 @@ public class Fruit : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.isGameOver || GameManager.Instance.isGameClear || GameManager.Instance.isPaused)
+            return;
+
         MoveFruit();
     }
 
@@ -69,6 +72,8 @@ public class Fruit : MonoBehaviour
 
             // 다음 레벨 과일 생성
             FruitManager.Instance.SpawnNextLevel(level, midPos);
+            AudioManager.Instance.PlaySFX(AudioManager.Sfx.Pop);
+
             // 점수 획득
             AddScore();
 
@@ -77,6 +82,7 @@ public class Fruit : MonoBehaviour
             {
                 FruitManager.Instance.watermelonCount++;
 
+                // 수박을 두개 만들었을경우 게임 종료
                 if(FruitManager.Instance.watermelonCount == 2)
                 {
                     GameManager.Instance.GameClear();
@@ -85,6 +91,7 @@ public class Fruit : MonoBehaviour
         }
     }
 
+    
     private void OnTriggerStay2D(Collider2D collision)
     {
         // 경계선 활성화
@@ -131,8 +138,8 @@ public class Fruit : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         // 가로로 최대 이동가능한 영역
-        float minX = -2.4f + transform.localScale.x / 2f;
-        float maxX = 2.4f - transform.localScale.x / 2f;
+        float minX = -1.96f + transform.localScale.x / 2f;
+        float maxX = 1.96f - transform.localScale.x / 2f;
         float clampedX = Mathf.Clamp(mousePos.x, minX, maxX);
 
         // 가로로만 이동
