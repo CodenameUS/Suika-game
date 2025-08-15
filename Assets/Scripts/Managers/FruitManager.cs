@@ -10,6 +10,9 @@ using UnityEngine.UI;
             - 다음 과일은 UI에 이미지로 표시
         
         - 터치 & 드래그 이벤트 관리
+
+        - 게임 리셋
+            - 씬에 활성화되어있는 과일들을 모두 풀로 반환
  */
 
 
@@ -29,14 +32,14 @@ public class FruitManager : MonoBehaviour
     public int watermelonCount;                                     // 수박 갯수(2개가 되면 목표달성)
 
     private int nextFruitLevel;                                     // 다음 과일 레벨
-    private int poolSize = 10;                                      // 과일 풀 사이즈(과일별)
+    private int poolSize = 5;                                      // 과일 풀 사이즈(과일별)
 
     private Dictionary<int, Queue<Fruit>> fruitPool = new();        // 과일 풀
-    private List<Fruit> activeFruits = new();
+    private List<Fruit> activeFruits = new();                       // 활성화 되어있는 과일(게임 리셋용)
 
-    private static FruitManager instance;
     #endregion
 
+    private static FruitManager instance;
     public static FruitManager Instance => instance;
 
 

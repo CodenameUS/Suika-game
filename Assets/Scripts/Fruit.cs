@@ -20,26 +20,28 @@ public class Fruit : MonoBehaviour
 {
     [SerializeField] private GameObject dropLine;           // 드랍위치 표시줄
 
-    private bool isDrag;                                    // 드래그 여부
-    private bool isMerge;                                   // 합쳐짐 여부
+    private bool isDrag;                            // 드래그 여부
+    public bool isMerge;                            // 합쳐짐 여부
     private float boundaryEffectTimer = 0f;                 // 경계선 활성화 타이머
     private float deadTimer = 0f;                           // 게임오버 타이머
 
-    public int level;                                       // 과일 레벨
-
     private Rigidbody2D rigid;
     private Animator anim;
+
+    public int level;                                       // 과일 레벨
 
     readonly private int hashLevel = Animator.StringToHash("Level");
 
     private void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        Init();
     }
 
     private void OnEnable()
     {
+        isMerge = false;
+        anim.Rebind();
+        anim.Update(0f);
         anim.SetInteger(hashLevel, level);
     }
 
@@ -47,12 +49,23 @@ public class Fruit : MonoBehaviour
     {
         if (GameManager.Instance.isGameOver || GameManager.Instance.isGameClear || GameManager.Instance.isPaused)
             return;
+        if (Input.GetKeyDown(KeyCode.Space))
+            GameManager.Instance.GameClear();
+        else if (Input.GetKeyDown(KeyCode.A))
+            GameManager.Instance.GameOver();
 
         MoveFruit();
     }
 
+    // 컴포넌트 초기화
+    private void Init()
+    {
+        rigid = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+    }
+
     // 과일 합치기
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("Fruit")) return;
 
@@ -91,7 +104,7 @@ public class Fruit : MonoBehaviour
         }
     }
 
-    
+    // 경계선 이펙트 활성화 및 게임오버 처리
     private void OnTriggerStay2D(Collider2D collision)
     {
         // 경계선 활성화
